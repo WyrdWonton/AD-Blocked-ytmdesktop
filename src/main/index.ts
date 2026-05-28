@@ -1034,9 +1034,9 @@ const createYTMView = (): void => {
   companionServer.provide(store, memoryStore, ytmView);
   customCss.provide(store, ytmView);
   ratioVolume.provide(ytmView);
-// --- FRONTEND AD-BLOCKER ---
+//AD-BLOCKER
   ytmView.webContents.on("dom-ready", () => {
-    // 1. Force-hide all visual banner ads and popups
+    // 1. Force-hide visual banner ads and popups
     ytmView.webContents.insertCSS(`
       ytmusic-mealbar-promo-renderer,
       .ytp-ad-module,
@@ -1045,8 +1045,7 @@ const createYTMView = (): void => {
         display: none !important;
       }
     `);
-
-    // 2. Brutalize audio/video ads by auto-skipping and fast-forwarding
+    // 2. skipping and fast-forwarding
     ytmView.webContents.executeJavaScript(`
       setInterval(() => {
         // Click the 'Skip Ad' button if it exists
